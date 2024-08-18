@@ -16,11 +16,8 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 db.execute('SELECT * FROM products')
-    .then(result => {
-        console.log(result)
-    })
-    .catch(err => {
-        console.log(err)
+    .then(results => {
+        console.log(results)
     })
 
 app.use(bodyParser.urlencoded({ extended: false }));
