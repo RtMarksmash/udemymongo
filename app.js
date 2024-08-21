@@ -1,5 +1,5 @@
 const path = require('path');
-const db = require('./util/database');
+const sequelize = require('./util/database');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,11 +15,6 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-db.execute('SELECT * FROM products')
-    .then(results => {
-        console.log(results)
-    })
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,6 +24,13 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+sequelize.sync()
+    .then(results => {
+        console.log('sequelize connect')
+    })
+    .catch(err => {
+        console.log(err)
+    })
 app.listen(config.port, () => {
     console.log(config.messague)
 });
