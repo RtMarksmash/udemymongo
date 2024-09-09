@@ -1,10 +1,4 @@
-const { Sequelize } = require('sequelize');
+const mongoDb = require('mongodb');
+const MongoClient = mongoDb.MongoClient;
 
-const sequelize = new Sequelize('node-complete', 'root', 'mark123456', {
-    dialect: 'mysql',
-    host: 'localhost'
-});
-
-
-
-module.exports = sequelize;
+MongoClient.connect('mongodb+srv://<db_username>:<db_password>@cluster0.z9aglvc.mongodb.net/')
