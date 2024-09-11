@@ -1,8 +1,8 @@
 const Product = require('../models/product');
-const { where } = require('sequelize');
+
 
 exports.getProducts = (req, res, next) => {
-    Product.findAll()
+    Product.fetchAll()
         .then(product => {
             res.render('shop/product-list', {
                 prods: product,
@@ -42,7 +42,7 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-    Product.findAll()
+    Product.fetchAll()
         .then(product => {
             res.render('shop/index', {
                 prods: product,
