@@ -28,8 +28,9 @@ exports.getProduct = (req, res, next) => {
           .catch(err => {
               console.log(err)
           }) */
-    Product.findByPk(prodId)
+    Product.findById(prodId)
         .then(product => {
+            console.log(product)
             res.render('shop/product-detail', {
                 product: product,
                 pageTitle: product.title,
@@ -67,7 +68,6 @@ exports.getCart = (req, res, next) => {
                         pageTitle: 'Your Cart',
                         products: products
                     });
-
                 })
                 .catch(err => {
                     console.log(err)
